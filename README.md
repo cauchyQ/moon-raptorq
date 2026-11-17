@@ -1,6 +1,6 @@
 # MoonRaptorQ
 
-面向丢包环境对象分发的纯 MoonBit RaptorQ 库。实现 RFC 6330 的系统式编码、LDPC/HDPC 预编码和 GF(256) 恢复，支持按需生成修复符号。它与原来的 `moonbit-roaring` 是独立项目。
+面向丢包环境对象分发的纯 MoonBit RaptorQ 库。实现 RFC 6330 的系统式编码、LDPC/HDPC 预编码和 GF(256) 恢复，支持按需生成修复符号。
 
 项目定位、三个使用场景和交付范围见[项目申报书](moon-raptorq-项目申报书.md)。
 
