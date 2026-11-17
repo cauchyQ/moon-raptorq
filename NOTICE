@@ -1,0 +1,26 @@
+MoonRaptorQ
+Copyright 2026 cauchyQ contributors
+Licensed under the Apache License, Version 2.0.
+
+This project implements the algorithms described in RFC 6330.
+RFC 6330 authors: M. Luby, A. Shokrollahi, M. Watson, T. Stockhammer, L. Minder.
+Standard: https://www.rfc-editor.org/rfc/rfc6330.html
+
+The fixed Rand tables and systematic parameter table in standard_tables.mbt,
+and the HDPC recurrence in matrix.mbt, are adapted from cberner/raptorq,
+by Christopher Berner and contributors, licensed under Apache-2.0.
+Reference revision: 73e4e97b0e4d9048c49d195903e440662ef1660b
+Source: https://github.com/cberner/raptorq
+Changes: MoonBit translation, bounded K<=256 table subset, dense/online
+GF(256) elimination, bounded single-subblock object API and strict parsing.
+The complete Apache-2.0 license is provided in LICENSE.
+
+reference_vectors_test.mbt is generated from the independently executed
+Rust raptorq 2.0.0 Python binding. It is reference test data, not handwritten
+MoonBit algorithm implementation. Python helpers implement framing and
+experiment orchestration; they are not runtime codec dependencies.
+
+Published comparison libraries, fetched by Moon, are not vendored:
+oyjh0381/moonerasure 0.3.0 (Apache-2.0)
+ZJH-666-ZJH/moonrecoder 0.1.1 (MIT)
+Their own copyrights, licenses and notices remain with those projects.
