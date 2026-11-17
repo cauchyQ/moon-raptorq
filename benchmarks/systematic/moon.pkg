@@ -1,0 +1,7 @@
+import {
+  "cauchyQ/moon-raptorq" @rq,
+  "cauchyQ/moon-raptorq/lab",
+  "moonbitlang/core/bench",
+}
+
+pkgtype(kind: "executable")

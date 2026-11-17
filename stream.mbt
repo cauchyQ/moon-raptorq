@@ -39,12 +39,8 @@ fn Basis::insert(
       }
       None => {
         let inverse = field_inverse(scalar)
-        for index in column..<self.columns {
-          row[index] = field_mul(row[index], inverse)
-        }
-        for index in 0..<self.width {
-          data[index] = field_mul(data[index], inverse)
-        }
+        scale_row(row, inverse, column)
+        scale_row(data, inverse, 0)
         self.rows[column] = Some(row)
         self.data[column] = Some(data)
         self.rank += 1

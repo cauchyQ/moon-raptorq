@@ -66,7 +66,7 @@ for id in k..<(2 * k + 8) {
 assert_eq(receiver.decode().unwrap(), Some(source))
 ```
 
-源码仓库：[cauchyQ/moon-raptorq](https://github.com/cauchyQ/moon-raptorq)。模块尚未发布到 mooncakes，以上导入说明适用于源码项目或发布后的消费者。
+源码仓库：[cauchyQ/moon-raptorq](https://github.com/cauchyQ/moon-raptorq)。发布版本为 `cauchyQ/moon-raptorq@0.1.0`，在消费项目中执行 `moon add cauchyQ/moon-raptorq@0.1.0` 安装，然后在 `moon.pkg` 导入并取别名 `rq`。
 
 ## 独立验证与对照
 
@@ -87,6 +87,7 @@ Windows 上，互操作脚本通过 WSL 调用 Linux Python。将参考库安装
 
 - [实测对照表](reports/MEASUREMENTS.md)：相同对象、符号大小、包数预算和丢包轨迹，运行实际发布的 MoonErasure、MoonRecoder 和本库。
 - [规模与修复开销](reports/SCALING.md)：K=16/64/128/256、不同符号大小、计划建立与复用分别计时。
+- [算法改进实测](reports/OPTIMIZATION.md)：完整源符号直接恢复、XOR 与单位主元优化的前后数据。
 - [互操作结果](reports/interop.json)：12 组单块参数双向恢复及逐字节比较；另有 2 组多块划分测试。
 - [设计与范围](docs/DESIGN.md)、[比较方法和解读](docs/COMPARISON.md)、[交付记录](docs/DELIVERY.md)。
 
@@ -96,4 +97,4 @@ Windows 上，互操作脚本通过 WSL 调用 Linux Python。将参考库安装
 
 Apache-2.0，见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)。标准常量和 HDPC 递推参考 `cberner/raptorq` 的固定版本；归属和修改范围已记录。固定常量、自动生成的参考向量与手写代码分开统计，见 [代码统计](reports/source-lines.json)。
 
-本项目解决的是有界标准纠删码和对象恢复，无法凭代码行数或本地测试保证比赛验收结果。公开仓库、真实开发记录、mooncakes 发布和参赛者自行撰写的申报材料仍需在正式提交前完成。
+本项目解决的是有界标准纠删码和对象恢复，无法凭代码行数或本地测试保证比赛验收结果。正式提交时应核对发布版本、远程 CI 和申报材料，后续开发记录应持续、真实地积累。

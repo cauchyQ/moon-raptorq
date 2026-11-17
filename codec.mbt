@@ -107,6 +107,33 @@ pub fn Decoder::decode(self : Decoder) -> Result[Bytes?, RaptorError] {
   if self.packets.length() < self.config.source_symbols {
     return Ok(None)
   }
+  // Exactly K distinct source packets already contain the original object.
+  // Do not take this path with surplus equations: they must still be checked.
+  if self.packets.length() == self.config.source_symbols {
+    let ordered : Array[Bytes?] = Array::make(self.config.source_symbols, None)
+    let mut systematic = true
+    for packet in self.packets {
+      if packet.id >= self.config.source_symbols {
+        systematic = false
+        break
+      }
+      ordered[packet.id] = Some(packet.payload)
+    }
+    if systematic {
+      let output = @buffer.Buffer::Buffer()
+      for symbol in ordered {
+        let payload = symbol.unwrap()
+        let remaining = self.config.length - output.length()
+        let count = if remaining < payload.length() {
+          remaining
+        } else {
+          payload.length()
+        }
+        output.write_bytes(payload[:count])
+      }
+      return Ok(Some(output.to_bytes()))
+    }
+  }
   let p = parameters(self.config.source_symbols)
   let matrix = precode(p)
   let rhs = zero_matrix(p.ldpc + p.hdpc, self.config.symbol_size)

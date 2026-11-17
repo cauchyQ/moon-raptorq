@@ -65,7 +65,27 @@ fn add_scaled(
   if scalar == 0 {
     return
   }
+  if scalar == 1 {
+    for i in start..<target.length() {
+      target[i] = target[i] ^ source[i]
+    }
+    return
+  }
+  let products = field_products[scalar]
   for i in start..<target.length() {
-    target[i] = target[i] ^ field_mul(source[i], scalar)
+    target[i] = target[i] ^ products[source[i]]
+  }
+}
+
+///|
+/// Unit pivots need no normalization. Hoist the scalar's multiplication row
+/// once for other pivots, rather than indexing two tables for every element.
+fn scale_row(row : Array[Int32], scalar : Int32, start : Int32) -> Unit {
+  if scalar == 1 {
+    return
+  }
+  let products = field_products[scalar]
+  for i in start..<row.length() {
+    row[i] = products[row[i]]
   }
 }

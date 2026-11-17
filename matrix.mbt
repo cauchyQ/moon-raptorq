@@ -88,12 +88,8 @@ fn solve(
     data[rank] = data[pivot]
     data[pivot] = old_data
     let inverse = field_inverse(matrix[rank][column])
-    for i in column..<columns {
-      matrix[rank][i] = field_mul(matrix[rank][i], inverse)
-    }
-    for i in 0..<data[rank].length() {
-      data[rank][i] = field_mul(data[rank][i], inverse)
-    }
+    scale_row(matrix[rank], inverse, column)
+    scale_row(data[rank], inverse, 0)
     for row in (rank + 1)..<matrix.length() {
       let scalar = matrix[row][column]
       if scalar != 0 {
