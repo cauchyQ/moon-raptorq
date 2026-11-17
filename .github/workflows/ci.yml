@@ -1,0 +1,51 @@
+name: Check, test and interoperate
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [wasm, wasm-gc, js]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - run: moon version --all
+      - run: moon update
+      - run: moon check --deny-warn --target ${{ matrix.target }}
+      - run: moon build --deny-warn --target ${{ matrix.target }}
+      - run: moon test --release --deny-warn --target ${{ matrix.target }}
+      - name: Run five examples
+        run: |
+          moon run examples/multicast --release --target ${{ matrix.target }}
+          moon run examples/device --release --target ${{ matrix.target }}
+          moon run examples/edge --release --target ${{ matrix.target }}
+          moon run examples/object --release --target ${{ matrix.target }}
+          moon run examples/resume --release --target ${{ matrix.target }}
+      - name: Verify generated interfaces and formatting
+        run: |
+          moon info
+          moon fmt
+          git diff --exit-code
+  interop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install MoonBit and independent reference
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+          python -m pip install --target .verification/reference-python2 raptorq==2.0.0
+      - run: moon update
+      - run: python tools/verify_interop.py
+      - run: git diff --exit-code -- reference_vectors_test.mbt reports/interop.json

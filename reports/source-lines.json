@@ -1,0 +1,301 @@
+{
+  "method": "Physical lines plus nonblank lines not starting //; not an AST complexity measure.",
+  "categories": {
+    "handwritten_tests": {
+      "files": 15,
+      "physical": 1887,
+      "nonblank_noncomment": 1710
+    },
+    "handwritten_experiments": {
+      "files": 4,
+      "physical": 556,
+      "nonblank_noncomment": 510
+    },
+    "handwritten_library": {
+      "files": 15,
+      "physical": 1659,
+      "nonblank_noncomment": 1353
+    },
+    "handwritten_examples_cli": {
+      "files": 8,
+      "physical": 463,
+      "nonblank_noncomment": 432
+    },
+    "generated_reference_fixtures": {
+      "files": 1,
+      "physical": 736,
+      "nonblank_noncomment": 707
+    },
+    "generated_standard_data": {
+      "files": 1,
+      "physical": 216,
+      "nonblank_noncomment": 204
+    }
+  },
+  "files": [
+    {
+      "path": "algebra_wbtest.mbt",
+      "category": "handwritten_tests",
+      "physical": 197,
+      "nonblank_noncomment": 171
+    },
+    {
+      "path": "benchmarks/compare/main.mbt",
+      "category": "handwritten_experiments",
+      "physical": 213,
+      "nonblank_noncomment": 202
+    },
+    {
+      "path": "benchmarks/scaling/main.mbt",
+      "category": "handwritten_experiments",
+      "physical": 120,
+      "nonblank_noncomment": 112
+    },
+    {
+      "path": "checkpoint.mbt",
+      "category": "handwritten_library",
+      "physical": 138,
+      "nonblank_noncomment": 115
+    },
+    {
+      "path": "checkpoint_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 138,
+      "nonblank_noncomment": 127
+    },
+    {
+      "path": "checkpoint_wbtest.mbt",
+      "category": "handwritten_tests",
+      "physical": 127,
+      "nonblank_noncomment": 112
+    },
+    {
+      "path": "cmd/interop/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 38,
+      "nonblank_noncomment": 35
+    },
+    {
+      "path": "cmd/main/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 203,
+      "nonblank_noncomment": 194
+    },
+    {
+      "path": "cmd/object-interop/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 40,
+      "nonblank_noncomment": 39
+    },
+    {
+      "path": "codec.mbt",
+      "category": "handwritten_library",
+      "physical": 129,
+      "nonblank_noncomment": 103
+    },
+    {
+      "path": "core_bench.mbt",
+      "category": "handwritten_experiments",
+      "physical": 41,
+      "nonblank_noncomment": 36
+    },
+    {
+      "path": "core_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 37,
+      "nonblank_noncomment": 34
+    },
+    {
+      "path": "examples/device/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 45,
+      "nonblank_noncomment": 42
+    },
+    {
+      "path": "examples/edge/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 38,
+      "nonblank_noncomment": 34
+    },
+    {
+      "path": "examples/multicast/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 36,
+      "nonblank_noncomment": 33
+    },
+    {
+      "path": "examples/object/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 28,
+      "nonblank_noncomment": 24
+    },
+    {
+      "path": "examples/resume/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 35,
+      "nonblank_noncomment": 31
+    },
+    {
+      "path": "field.mbt",
+      "category": "handwritten_library",
+      "physical": 71,
+      "nonblank_noncomment": 59
+    },
+    {
+      "path": "framer.mbt",
+      "category": "handwritten_library",
+      "physical": 88,
+      "nonblank_noncomment": 71
+    },
+    {
+      "path": "framer_property_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 85,
+      "nonblank_noncomment": 78
+    },
+    {
+      "path": "framer_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 122,
+      "nonblank_noncomment": 109
+    },
+    {
+      "path": "helpers.mbt",
+      "category": "handwritten_library",
+      "physical": 57,
+      "nonblank_noncomment": 50
+    },
+    {
+      "path": "lab/scenarios.mbt",
+      "category": "handwritten_experiments",
+      "physical": 182,
+      "nonblank_noncomment": 160
+    },
+    {
+      "path": "lab/scenarios_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 39,
+      "nonblank_noncomment": 34
+    },
+    {
+      "path": "matrix.mbt",
+      "category": "handwritten_library",
+      "physical": 151,
+      "nonblank_noncomment": 137
+    },
+    {
+      "path": "object_codec.mbt",
+      "category": "handwritten_library",
+      "physical": 180,
+      "nonblank_noncomment": 149
+    },
+    {
+      "path": "object_config.mbt",
+      "category": "handwritten_library",
+      "physical": 147,
+      "nonblank_noncomment": 120
+    },
+    {
+      "path": "object_framer_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 88,
+      "nonblank_noncomment": 82
+    },
+    {
+      "path": "object_packet.mbt",
+      "category": "handwritten_library",
+      "physical": 59,
+      "nonblank_noncomment": 46
+    },
+    {
+      "path": "object_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 334,
+      "nonblank_noncomment": 311
+    },
+    {
+      "path": "packet_framers.mbt",
+      "category": "handwritten_library",
+      "physical": 83,
+      "nonblank_noncomment": 56
+    },
+    {
+      "path": "parameters.mbt",
+      "category": "handwritten_library",
+      "physical": 149,
+      "nonblank_noncomment": 123
+    },
+    {
+      "path": "parameters_wbtest.mbt",
+      "category": "handwritten_tests",
+      "physical": 132,
+      "nonblank_noncomment": 121
+    },
+    {
+      "path": "plan.mbt",
+      "category": "handwritten_library",
+      "physical": 78,
+      "nonblank_noncomment": 64
+    },
+    {
+      "path": "plan_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 68,
+      "nonblank_noncomment": 61
+    },
+    {
+      "path": "recovery_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 116,
+      "nonblank_noncomment": 105
+    },
+    {
+      "path": "reference_vectors_test.mbt",
+      "category": "generated_reference_fixtures",
+      "physical": 736,
+      "nonblank_noncomment": 707
+    },
+    {
+      "path": "resources.mbt",
+      "category": "handwritten_library",
+      "physical": 47,
+      "nonblank_noncomment": 36
+    },
+    {
+      "path": "resources_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 48,
+      "nonblank_noncomment": 43
+    },
+    {
+      "path": "standard_tables.mbt",
+      "category": "generated_standard_data",
+      "physical": 216,
+      "nonblank_noncomment": 204
+    },
+    {
+      "path": "stream.mbt",
+      "category": "handwritten_library",
+      "physical": 186,
+      "nonblank_noncomment": 148
+    },
+    {
+      "path": "stream_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 156,
+      "nonblank_noncomment": 143
+    },
+    {
+      "path": "wire.mbt",
+      "category": "handwritten_library",
+      "physical": 96,
+      "nonblank_noncomment": 76
+    },
+    {
+      "path": "wire_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 200,
+      "nonblank_noncomment": 179
+    }
+  ]
+}

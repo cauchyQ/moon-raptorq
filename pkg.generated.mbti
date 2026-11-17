@@ -1,0 +1,161 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "cauchyQ/moon-raptorq"
+
+// Values
+pub fn parse_config(Bytes) -> Result[Config, RaptorError]
+
+pub fn parse_object_config(Bytes) -> Result[ObjectConfig, RaptorError]
+
+pub fn restore_decoder(Bytes) -> Result[Decoder, RaptorError]
+
+pub fn restore_stream_decoder(Bytes) -> Result[StreamDecoder, RaptorError]
+
+// Errors
+
+// Types and methods
+type Basis
+
+pub struct Config {
+  // private fields
+}
+pub fn Config::new(Int32, Int32) -> Result[Self, RaptorError]
+pub fn Config::parse_packet(Self, Bytes) -> Result[Packet, RaptorError]
+pub fn Config::serialize(Self) -> Bytes
+pub fn Config::source_symbols(Self) -> Int32
+pub fn Config::stream_storage(Self) -> StorageEstimate
+pub fn Config::symbol_size(Self) -> Int32
+pub fn Config::transfer_length(Self) -> Int32
+
+pub struct Decoder {
+  // private fields
+}
+pub fn Decoder::checkpoint(Self) -> Bytes
+pub fn Decoder::decode(Self) -> Result[Bytes?, RaptorError]
+pub fn Decoder::new(Config) -> Self
+pub fn Decoder::push(Self, Packet) -> Result[Bool, RaptorError]
+pub fn Decoder::push_bytes(Self, Bytes) -> Result[Bool, RaptorError]
+pub fn Decoder::received(Self) -> Int32
+
+pub struct Encoder {
+  // private fields
+}
+pub fn Encoder::config(Self) -> Config
+pub fn Encoder::new(Bytes, Int32) -> Result[Self, RaptorError]
+pub fn Encoder::packet(Self, Int32) -> Result[Packet, RaptorError]
+
+pub struct EncodingPlan {
+  // private fields
+}
+pub fn EncodingPlan::coefficient_bytes(Self) -> Int32
+pub fn EncodingPlan::encode(Self, Bytes, Int32) -> Result[Encoder, RaptorError]
+pub fn EncodingPlan::new(Int32) -> Result[Self, RaptorError]
+pub fn EncodingPlan::source_symbols(Self) -> Int32
+
+type FrameBuffer
+
+pub struct ObjectConfig {
+  // private fields
+}
+pub fn ObjectConfig::automatic(Int32, Int32) -> Result[Self, RaptorError]
+pub fn ObjectConfig::block_config(Self, Int32) -> Result[Config, RaptorError]
+pub fn ObjectConfig::block_offset(Self, Int32) -> Result[Int32, RaptorError]
+pub fn ObjectConfig::new(Int32, Int32, Int32) -> Result[Self, RaptorError]
+pub fn ObjectConfig::packet(Self, Int32, Packet) -> Result[ObjectPacket, RaptorError]
+pub fn ObjectConfig::parse_packet(Self, Bytes) -> Result[ObjectPacket, RaptorError]
+pub fn ObjectConfig::serialize(Self) -> Bytes
+pub fn ObjectConfig::source_blocks(Self) -> Int32
+pub fn ObjectConfig::symbol_size(Self) -> Int32
+pub fn ObjectConfig::transfer_length(Self) -> Int32
+
+pub struct ObjectDecoder {
+  // private fields
+}
+pub fn ObjectDecoder::active_blocks(Self) -> Int32
+pub fn ObjectDecoder::block_progress(Self, Int32) -> Result[Progress, RaptorError]
+pub fn ObjectDecoder::completed_blocks(Self) -> Int32
+pub fn ObjectDecoder::decode(Self) -> Bytes?
+pub fn ObjectDecoder::new(ObjectConfig, max_active_blocks? : Int32) -> Result[Self, RaptorError]
+pub fn ObjectDecoder::push(Self, ObjectPacket) -> Result[Bool, RaptorError]
+pub fn ObjectDecoder::push_bytes(Self, Bytes) -> Result[Bool, RaptorError]
+
+pub struct ObjectEncoder {
+  // private fields
+}
+pub fn ObjectEncoder::block(Self, Int32) -> Result[Encoder, RaptorError]
+pub fn ObjectEncoder::config(Self) -> ObjectConfig
+pub fn ObjectEncoder::new(Bytes, Int32, Int32) -> Result[Self, RaptorError]
+
+pub struct ObjectFramer {
+  // private fields
+}
+pub fn ObjectFramer::buffered(Self) -> Int32
+pub fn ObjectFramer::finish(Self) -> Result[Int32, RaptorError]
+pub fn ObjectFramer::new(ObjectConfig, max_packets? : Int32) -> Result[Self, RaptorError]
+pub fn ObjectFramer::parsed(Self) -> Int32
+pub fn ObjectFramer::push(Self, Bytes) -> Result[Array[ObjectPacket], RaptorError]
+
+pub struct ObjectPacket {
+  // private fields
+}
+pub fn ObjectPacket::block(Self) -> Int32
+pub fn ObjectPacket::serialize(Self) -> Bytes
+pub fn ObjectPacket::symbol(Self) -> Packet
+
+pub struct Packet {
+  // private fields
+}
+pub fn Packet::id(Self) -> Int32
+pub fn Packet::new(Int32, Bytes) -> Result[Self, RaptorError]
+pub fn Packet::payload(Self) -> Bytes
+pub fn Packet::serialize(Self) -> Bytes
+
+pub struct PacketFramer {
+  // private fields
+}
+pub fn PacketFramer::buffered(Self) -> Int32
+pub fn PacketFramer::finish(Self) -> Result[Int32, RaptorError]
+pub fn PacketFramer::new(Config, max_packets? : Int32) -> Result[Self, RaptorError]
+pub fn PacketFramer::parsed(Self) -> Int32
+pub fn PacketFramer::push(Self, Bytes) -> Result[Array[Packet], RaptorError]
+
+pub(all) struct Progress {
+  received : Int32
+  independent : Int32
+  required : Int32
+}
+pub fn Progress::complete(Self) -> Bool
+pub fn Progress::remaining(Self) -> Int32
+
+pub(all) enum RaptorError {
+  InvalidParameters(String)
+  UnsupportedProfile(String)
+  InvalidPacket(String)
+  ResourceLimit(String)
+  ConflictingDuplicate(Int32)
+  InconsistentEquations
+}
+pub fn RaptorError::message(Self) -> String
+
+pub(all) struct StorageEstimate {
+  coefficient_bytes : Int32
+  symbol_bytes : Int32
+  retained_payload_bytes : Int32
+  decode_scratch_bytes : Int32
+  shared_field_table_bytes : Int32
+}
+pub fn StorageEstimate::raw_total(Self) -> Int32
+
+pub struct StreamDecoder {
+  // private fields
+}
+pub fn StreamDecoder::checkpoint(Self) -> Bytes
+pub fn StreamDecoder::config(Self) -> Config
+pub fn StreamDecoder::decode(Self) -> Result[Bytes?, RaptorError]
+pub fn StreamDecoder::new(Config) -> Self
+pub fn StreamDecoder::progress(Self) -> Progress
+pub fn StreamDecoder::push(Self, Packet) -> Result[Bool, RaptorError]
+pub fn StreamDecoder::push_bytes(Self, Bytes) -> Result[Bool, RaptorError]
+
+// Type aliases
+
+// Traits
