@@ -1,0 +1,27 @@
+{
+  "reference": "Rust raptorq 2.0.0 Python binding (PyPI Linux abi3 wheel)",
+  "profiles": [
+    1,
+    2,
+    3,
+    9,
+    10,
+    11,
+    16,
+    18,
+    32,
+    64,
+    128,
+    256
+  ],
+  "symbol_size": 8,
+  "reference_packets": 834,
+  "moonbit_packets": 646,
+  "reference_fixture_sha256": "b77b4f2653d4e3d9c28cbb3bed49f1338d1b1d2402443c1581c5b3db3b1b9793",
+  "exact_wire_bytes": "PASS",
+  "rust_to_moonbit": "PASS",
+  "moonbit_to_rust": "PASS",
+  "erasure_pattern": "drop ESI divisible by 3 from systematic set; add ceil(K/3)+8 repairs",
+  "multi_block_cases": 2,
+  "multi_block_scope": "RFC Partition computed separately in Python; each block checked with Rust single-block encoder/decoder. Rust Python API does not expose custom multi-block OTI."
+}
