@@ -1,0 +1,6 @@
+import {
+  "cauchyQ/moon-raptorq" @rq,
+  "cauchyQ/moon-raptorq/lab",
+}
+
+pkgtype(kind: "executable")
