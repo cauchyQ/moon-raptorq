@@ -64,7 +64,7 @@ for id in k..<(2 * k + 8) {
 assert_eq(receiver.decode().unwrap(), Some(source))
 ```
 
-模块尚未发布到 mooncakes，以上导入说明适用于源码项目或发布后的消费者；本轮没有创建远程仓库。
+源码仓库：[cauchyQ/moon-raptorq](https://github.com/cauchyQ/moon-raptorq)。模块尚未发布到 mooncakes，以上导入说明适用于源码项目或发布后的消费者。
 
 ## 独立验证与对照
 
