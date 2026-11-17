@@ -1,0 +1,9 @@
+import {
+  "cauchyQ/moon-raptorq" @rq,
+  "cauchyQ/moon-raptorq/lab",
+  "oyjh0381/moonerasure" @rs,
+  "ZJH-666-ZJH/moonrecoder" @rlnc,
+  "moonbitlang/core/bench",
+}
+
+pkgtype(kind: "executable")
