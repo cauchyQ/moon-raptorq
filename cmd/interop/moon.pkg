@@ -1,0 +1,7 @@
+import {
+  "cauchyQ/moon-raptorq" @rq,
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/encoding/hex",
+}
+
+pkgtype(kind: "executable")
