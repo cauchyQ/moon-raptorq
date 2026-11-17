@@ -1,0 +1,41 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "cauchyQ/moon-raptorq/lab"
+
+import {
+  "moonbitlang/core/json",
+}
+
+// Values
+pub fn join_symbols(Array[Bytes], Int32) -> Bytes
+
+pub fn measurement(String, Scenario, Int32, Int32, Double, Double, Int32, Int32, Int32, Int32, Bool, rank? : Int32) -> @json.Json
+
+pub fn padded_symbols(Bytes, Int32, Int32) -> Array[Bytes]
+
+pub fn scenarios() -> Array[Scenario]
+
+pub fn source(Int32, UInt32) -> Bytes
+
+pub fn trace(Scenario, UInt32, Int32) -> Array[Int32]
+
+pub fn unique_entries(Array[Int32], Int32) -> Int32
+
+// Errors
+
+// Types and methods
+pub(all) struct Scenario {
+  name : String
+  symbols : Int32
+  width : Int32
+  budget : Int32
+  receivers : Int32
+  loss_percent : Int32
+  burst_start : Int32
+  burst_length : Int32
+  duplicate_every : Int32
+  reverse : Bool
+}
+
+// Type aliases
+
+// Traits
