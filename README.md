@@ -16,7 +16,7 @@
 | 布局及报文 | 对齐的子块交织、尾部补零、连续多符号包、源块路由 |
 | 执行预算 | `ExecutionLimits` 可调；最大 K 的修复恢复验证使用 33,554,432 项稀疏系数预算 |
 
-下表及原有 `Config`、`Encoder`、`StreamDecoder`、`ObjectConfig` 接口仍描述 **0.1.0 兼容的小规模路径**。本轮源码准备为 0.2.0；Mooncakes 最新发布仍为 0.1.0，不能用旧发布包验证本轮功能。
+下表及原有 `Config`、`Encoder`、`StreamDecoder`、`ObjectConfig` 接口仍描述 **0.1.0 兼容的小规模路径**。新增标准接口属于 0.2.0，验证本轮功能请安装 0.2.0。
 
 ## 支持范围
 
@@ -79,7 +79,7 @@ for id in k..<(2 * k + 8) {
 assert_eq(receiver.decode().unwrap(), Some(source))
 ```
 
-源码仓库：[cauchyQ/moon-raptorq](https://github.com/cauchyQ/moon-raptorq)。发布版本为 `cauchyQ/moon-raptorq@0.1.0`，在消费项目中执行 `moon add cauchyQ/moon-raptorq@0.1.0` 安装，然后在 `moon.pkg` 导入并取别名 `rq`。
+源码仓库：[cauchyQ/moon-raptorq](https://github.com/cauchyQ/moon-raptorq)。在消费项目中执行 `moon add cauchyQ/moon-raptorq@0.2.0` 安装，然后在 `moon.pkg` 导入并取别名 `rq`。
 
 ## 独立验证与对照
 
