@@ -1,0 +1,57 @@
+{
+  "reference": "Rust raptorq 2.0.0",
+  "symbol_size": 1,
+  "sparse_coefficient_budget": 33554432,
+  "profiles": [
+    257,
+    1024,
+    4096,
+    56403
+  ],
+  "pattern": "omit source ESI divisible by 10; receive ceil(K/10)+16 repairs",
+  "reference_sha256": "0ce8de9546e7510cd2698e6ce33d20b391a3ad02b021e2996413fbdd0b13636a",
+  "moonbit_to_rust": {
+    "reverse": "PASS",
+    "cases": 4
+  },
+  "rust_to_moonbit": "PASS with exact repair-byte comparison",
+  "runs": [
+    {
+      "k": 257,
+      "t": 1,
+      "encode_us": 28438.7,
+      "decode_us": 14699.4,
+      "repair": "f3",
+      "high_esi": "41",
+      "recovered": true
+    },
+    {
+      "k": 1024,
+      "t": 1,
+      "encode_us": 97511.8,
+      "decode_us": 88973.6,
+      "repair": "c6",
+      "high_esi": "49",
+      "recovered": true
+    },
+    {
+      "k": 4096,
+      "t": 1,
+      "encode_us": 785904.7,
+      "decode_us": 647585.1,
+      "repair": "f7",
+      "high_esi": "4c",
+      "recovered": true
+    },
+    {
+      "k": 56403,
+      "t": 1,
+      "encode_us": 60874412.4,
+      "decode_us": 60675645.6,
+      "repair": "61",
+      "high_esi": "ca",
+      "recovered": true
+    }
+  ],
+  "scope": "Four parameter points including Kmax; not a statistical certification of section 5.8 across all 477 rows"
+}

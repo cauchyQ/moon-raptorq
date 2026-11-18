@@ -62,19 +62,24 @@ priv struct Parameters {
 
 ///|
 fn parameters(count : Int32) -> Parameters {
-  for entry in systematic_parameters {
-    let (extended, systematic, ldpc, hdpc, lt) = entry
-    if extended >= count {
-      let total = extended + ldpc + hdpc
-      let pi = total - lt
-      let mut prime = pi
-      while !is_prime(prime) {
-        prime += 1
-      }
-      return { extended, systematic, ldpc, hdpc, lt, total, pi, prime, }
+  let mut low = 0
+  let mut high = systematic_parameters.length() - 1
+  while low < high {
+    let middle = low + (high - low) / 2
+    if systematic_parameters[middle].0 < count {
+      low = middle + 1
+    } else {
+      high = middle
     }
   }
-  abort("validated profile has no parameter table entry")
+  let (extended, systematic, ldpc, hdpc, lt) = systematic_parameters[low]
+  let total = extended + ldpc + hdpc
+  let pi = total - lt
+  let mut prime = pi
+  while !is_prime(prime) {
+    prime += 1
+  }
+  { extended, systematic, ldpc, hdpc, lt, total, pi, prime, }
 }
 
 ///|

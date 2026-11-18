@@ -13,7 +13,7 @@ for path in sorted(root.rglob("*.mbt")):
         continue
     name = path.name
     if name == "standard_tables.mbt": category = "generated_standard_data"
-    elif name == "reference_vectors_test.mbt": category = "generated_reference_fixtures"
+    elif name in {"reference_vectors_test.mbt", "standard_layout_vectors_test.mbt"}: category = "generated_reference_fixtures"
     elif name.endswith("_bench.mbt"): category = "handwritten_experiments"
     elif name.endswith(("_test.mbt", "_wbtest.mbt")): category = "handwritten_tests"
     elif relative.parts[0] in {"lab", "benchmarks"}: category = "handwritten_experiments"

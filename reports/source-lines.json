@@ -2,9 +2,9 @@
   "method": "Physical lines plus nonblank lines not starting //; not an AST complexity measure.",
   "categories": {
     "handwritten_tests": {
-      "files": 16,
-      "physical": 1939,
-      "nonblank_noncomment": 1759
+      "files": 19,
+      "physical": 2181,
+      "nonblank_noncomment": 1980
     },
     "handwritten_experiments": {
       "files": 5,
@@ -12,24 +12,24 @@
       "nonblank_noncomment": 531
     },
     "handwritten_library": {
-      "files": 15,
-      "physical": 1698,
-      "nonblank_noncomment": 1386
+      "files": 20,
+      "physical": 2552,
+      "nonblank_noncomment": 2143
     },
     "handwritten_examples_cli": {
-      "files": 8,
-      "physical": 463,
-      "nonblank_noncomment": 432
+      "files": 11,
+      "physical": 624,
+      "nonblank_noncomment": 588
     },
     "generated_reference_fixtures": {
-      "files": 1,
-      "physical": 736,
-      "nonblank_noncomment": 707
+      "files": 2,
+      "physical": 999,
+      "nonblank_noncomment": 963
     },
     "generated_standard_data": {
       "files": 1,
-      "physical": 216,
-      "nonblank_noncomment": 204
+      "physical": 647,
+      "nonblank_noncomment": 635
     }
   },
   "files": [
@@ -82,6 +82,12 @@
       "nonblank_noncomment": 35
     },
     {
+      "path": "cmd/layout-interop/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 59,
+      "nonblank_noncomment": 57
+    },
+    {
       "path": "cmd/main/main.mbt",
       "category": "handwritten_examples_cli",
       "physical": 203,
@@ -92,6 +98,12 @@
       "category": "handwritten_examples_cli",
       "physical": 40,
       "nonblank_noncomment": 39
+    },
+    {
+      "path": "cmd/standard-interop/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 63,
+      "nonblank_noncomment": 62
     },
     {
       "path": "codec.mbt",
@@ -110,6 +122,18 @@
       "category": "handwritten_tests",
       "physical": 37,
       "nonblank_noncomment": 34
+    },
+    {
+      "path": "encoding_packet.mbt",
+      "category": "handwritten_library",
+      "physical": 134,
+      "nonblank_noncomment": 114
+    },
+    {
+      "path": "encoding_packet_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 38,
+      "nonblank_noncomment": 35
     },
     {
       "path": "examples/device/main.mbt",
@@ -140,6 +164,18 @@
       "category": "handwritten_examples_cli",
       "physical": 35,
       "nonblank_noncomment": 31
+    },
+    {
+      "path": "examples/standard/main.mbt",
+      "category": "handwritten_examples_cli",
+      "physical": 39,
+      "nonblank_noncomment": 37
+    },
+    {
+      "path": "execution_limits.mbt",
+      "category": "handwritten_library",
+      "physical": 31,
+      "nonblank_noncomment": 25
     },
     {
       "path": "field.mbt",
@@ -234,8 +270,8 @@
     {
       "path": "parameters.mbt",
       "category": "handwritten_library",
-      "physical": 149,
-      "nonblank_noncomment": 123
+      "physical": 154,
+      "nonblank_noncomment": 128
     },
     {
       "path": "parameters_wbtest.mbt",
@@ -280,10 +316,34 @@
       "nonblank_noncomment": 43
     },
     {
+      "path": "sparse.mbt",
+      "category": "handwritten_library",
+      "physical": 210,
+      "nonblank_noncomment": 201
+    },
+    {
+      "path": "standard_block.mbt",
+      "category": "handwritten_library",
+      "physical": 197,
+      "nonblank_noncomment": 176
+    },
+    {
+      "path": "standard_layout_vectors_test.mbt",
+      "category": "generated_reference_fixtures",
+      "physical": 263,
+      "nonblank_noncomment": 256
+    },
+    {
       "path": "standard_tables.mbt",
       "category": "generated_standard_data",
-      "physical": 216,
-      "nonblank_noncomment": 204
+      "physical": 647,
+      "nonblank_noncomment": 635
+    },
+    {
+      "path": "standard_wbtest.mbt",
+      "category": "handwritten_tests",
+      "physical": 130,
+      "nonblank_noncomment": 117
     },
     {
       "path": "stream.mbt",
@@ -296,6 +356,18 @@
       "category": "handwritten_tests",
       "physical": 156,
       "nonblank_noncomment": 143
+    },
+    {
+      "path": "transmission.mbt",
+      "category": "handwritten_library",
+      "physical": 277,
+      "nonblank_noncomment": 236
+    },
+    {
+      "path": "transmission_test.mbt",
+      "category": "handwritten_tests",
+      "physical": 74,
+      "nonblank_noncomment": 69
     },
     {
       "path": "wire.mbt",

@@ -1,0 +1,34 @@
+{
+  "reference": "Rust raptorq 2.0.0 + independent Python RFC layout",
+  "rust_to_moonbit": "PASS",
+  "reverse": {
+    "moonbit_to_rust": "PASS",
+    "cases": 3,
+    "source_blocks": 9,
+    "scope": "Independent Python RFC layout plus Rust single-block codec; not Rust custom-OTI object API"
+  },
+  "profiles": [
+    {
+      "f": 53,
+      "t": 12,
+      "z": 2,
+      "n": 3,
+      "al": 2
+    },
+    {
+      "f": 101,
+      "t": 20,
+      "z": 3,
+      "n": 7,
+      "al": 4
+    },
+    {
+      "f": 1025,
+      "t": 8,
+      "z": 4,
+      "n": 2,
+      "al": 1
+    }
+  ],
+  "fixture_sha256": "4eb0d8934a4c500db732f522db16aaa4ac65f7e9944487d5bf443e22694d22bb"
+}

@@ -4,7 +4,19 @@
 
 项目定位、三个使用场景和交付范围见[项目申报书](moon-raptorq-项目申报书.md)。
 
-当前是有明确规模限制的实现，重点是标准符号互操作和可检查的恢复过程。它不是完整规模的 RFC 6330 实现，也没有采用稀疏失活译码。
+本轮按 2026-11-18 审核邮件整改，最终目标改为完整 RFC 6330 符合性。新增完整参数模型、稀疏失活编解码、子块交织和多符号包接口；完整符合性尚需补齐全表恢复性质及更多独立互操作证据。详见 [整改与符合性矩阵](docs/RFC6330-整改与符合性.md)。
+
+新增路径：`TransmissionInfo` 验证完整 OTI；`StandardBlockEncoder` / `StandardBlockDecoder` 支持 K=1..56403、T=1..65535，执行预算通过 `ExecutionLimits` 配置；`EncodingPacket` 支持聚合符号。大型对象逐块处理，使用 Int64 布局偏移。运行 `moon run examples/standard --release` 查看 Al=2、N=3、多源块、聚合修复包的示例；运行 `python tools/verify_standard.py` 复核最大 K 及 Rust 双向交换。
+
+| 新标准路径 | 范围与执行条件 |
+| --- | --- |
+| 源块参数 | K=1～56,403，完整 477 行参数表 |
+| OTI | T=1～65,535；Z=1～255；N=1～65,535；Al=1～255；校验对齐及每块 K 上限 |
+| 对象长度 | Int64 表示，最大 942,574,504,275 字节；按源块交给调用者读写 |
+| 布局及报文 | 对齐的子块交织、尾部补零、连续多符号包、源块路由 |
+| 执行预算 | `ExecutionLimits` 可调；最大 K 的修复恢复验证使用 33,554,432 项稀疏系数预算 |
+
+下表及原有 `Config`、`Encoder`、`StreamDecoder`、`ObjectConfig` 接口仍描述 **0.1.0 兼容的小规模路径**。本轮源码准备为 0.2.0；Mooncakes 最新发布仍为 0.1.0，不能用旧发布包验证本轮功能。
 
 ## 支持范围
 
@@ -37,9 +49,10 @@ moon run examples/device --release
 moon run examples/edge --release --target js
 moon run examples/object --release
 moon run examples/resume --release
+moon run examples/standard --release
 ```
 
-前三个示例分别模拟多接收方资源分发、设备传输中断和边缘对象交接；另外两个演示多源块内存释放与检查点续传。它们都是离线模拟，没有声称已经接入真实设备或浏览器页面。
+前三个示例分别模拟多接收方资源分发、设备传输中断和边缘对象交接；其余演示多源块内存释放、检查点续传及新标准接口的子块和聚合包。它们都是离线模拟，没有声称已经接入真实设备或浏览器页面。
 
 CLI 接受十六进制字节，适合检查报文和小规模联调：
 
@@ -77,6 +90,8 @@ Linux 下安装参考库并运行：
 ```sh
 python -m pip install --target .verification/reference-python2 raptorq==2.0.0
 python tools/verify_interop.py
+python tools/verify_standard.py
+python tools/verify_layout.py
 python tools/benchmark.py
 python tools/scaling.py
 python tools/check.py
@@ -89,6 +104,7 @@ Windows 上，互操作脚本通过 WSL 调用 Linux Python。将参考库安装
 - [规模与修复开销](reports/SCALING.md)：K=16/64/128/256、不同符号大小、计划建立与复用分别计时。
 - [算法改进实测](reports/OPTIMIZATION.md)：完整源符号直接恢复、XOR 与单位主元优化的前后数据。
 - [互操作结果](reports/interop.json)：12 组单块参数双向恢复及逐字节比较；另有 2 组多块划分测试。
+- [标准范围验证报告](reports/RFC6330-验证报告.md)：新增大块、完整字段和子块布局证据；原始数据见 [大块双向验证](reports/standard-interop.json)、[子块布局双向验证](reports/layout-interop.json)。
 - [设计与范围](docs/DESIGN.md)、[比较方法和解读](docs/COMPARISON.md)、[交付记录](docs/DELIVERY.md)。
 
 多块验证由独立 Python 划分对象，再逐块调用 Rust 编解码器，并检查完整对象重组。Rust Python 接口没有自定义多块 OTI 入口，因此没有把它写成 Rust 完整多块接口的端到端验证。
@@ -97,4 +113,4 @@ Windows 上，互操作脚本通过 WSL 调用 Linux Python。将参考库安装
 
 Apache-2.0，见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)。标准常量和 HDPC 递推参考 `cberner/raptorq` 的固定版本；归属和修改范围已记录。固定常量、自动生成的参考向量与手写代码分开统计，见 [代码统计](reports/source-lines.json)。
 
-本项目解决的是有界标准纠删码和对象恢复，无法凭代码行数或本地测试保证比赛验收结果。正式提交时应核对发布版本、远程 CI 和申报材料，后续开发记录应持续、真实地积累。
+项目以完整 RFC 6330 符合性为最终目标，当前测试仍不足以证明第 5.8 节全表恢复性质。正式提交时应核对标准覆盖矩阵、发布版本、远程 CI 和申报材料，后续开发记录应持续、真实地积累。

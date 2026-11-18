@@ -11,14 +11,16 @@ and the HDPC recurrence in matrix.mbt, are adapted from cberner/raptorq,
 by Christopher Berner and contributors, licensed under Apache-2.0.
 Reference revision: 73e4e97b0e4d9048c49d195903e440662ef1660b
 Source: https://github.com/cberner/raptorq
-Changes: MoonBit translation, bounded K<=256 table subset, dense/online
-GF(256) elimination, bounded single-subblock object API and strict parsing.
+Changes: MoonBit translation, complete 477-row parameter table, sparse inactivation and dense/online
+GF(256) elimination, legacy bounded APIs, full OTI/sub-block layout and strict packet parsing.
+The new inactivation solver is independently implemented in MoonBit.
 The complete Apache-2.0 license is provided in LICENSE.
 
-reference_vectors_test.mbt is generated from the independently executed
+reference_vectors_test.mbt and standard_layout_vectors_test.mbt are generated from the independently executed
 Rust raptorq 2.0.0 Python binding. It is reference test data, not handwritten
 MoonBit algorithm implementation. Python helpers implement framing and
-experiment orchestration; they are not runtime codec dependencies.
+experiment orchestration, including independent RFC sub-block layout checks;
+they are not runtime codec dependencies.
 
 Published comparison libraries, fetched by Moon, are not vendored:
 oyjh0381/moonerasure 0.3.0 (Apache-2.0)

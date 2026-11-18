@@ -2,9 +2,13 @@
 package "cauchyQ/moon-raptorq"
 
 // Values
+pub fn block_parameters(Int32) -> Result[BlockParameters, RaptorError]
+
 pub fn parse_config(Bytes) -> Result[Config, RaptorError]
 
 pub fn parse_object_config(Bytes) -> Result[ObjectConfig, RaptorError]
+
+pub fn parse_transmission_info(Bytes) -> Result[TransmissionInfo, RaptorError]
 
 pub fn restore_decoder(Bytes) -> Result[Decoder, RaptorError]
 
@@ -14,6 +18,15 @@ pub fn restore_stream_decoder(Bytes) -> Result[StreamDecoder, RaptorError]
 
 // Types and methods
 type Basis
+
+pub(all) struct BlockParameters {
+  extended_symbols : Int32
+  systematic_index : Int32
+  ldpc_symbols : Int32
+  hdpc_symbols : Int32
+  lt_symbols : Int32
+  intermediate_symbols : Int32
+}
 
 pub struct Config {
   // private fields
@@ -43,6 +56,14 @@ pub fn Encoder::config(Self) -> Config
 pub fn Encoder::new(Bytes, Int32) -> Result[Self, RaptorError]
 pub fn Encoder::packet(Self, Int32) -> Result[Packet, RaptorError]
 
+pub struct EncodingPacket {
+  // private fields
+}
+pub fn EncodingPacket::first_esi(Self) -> Int32
+pub fn EncodingPacket::serialize(Self) -> Bytes
+pub fn EncodingPacket::source_block(Self) -> Int32
+pub fn EncodingPacket::symbols(Self) -> Array[Bytes]
+
 pub struct EncodingPlan {
   // private fields
 }
@@ -50,6 +71,12 @@ pub fn EncodingPlan::coefficient_bytes(Self) -> Int32
 pub fn EncodingPlan::encode(Self, Bytes, Int32) -> Result[Encoder, RaptorError]
 pub fn EncodingPlan::new(Int32) -> Result[Self, RaptorError]
 pub fn EncodingPlan::source_symbols(Self) -> Int32
+
+pub struct ExecutionLimits {
+  // private fields
+}
+pub fn ExecutionLimits::defaults() -> Self
+pub fn ExecutionLimits::new(symbol_elements? : Int64, dense_entries? : Int32, sparse_entries? : Int32) -> Result[Self, RaptorError]
 
 type FrameBuffer
 
@@ -136,6 +163,27 @@ pub(all) enum RaptorError {
 }
 pub fn RaptorError::message(Self) -> String
 
+pub(all) struct SourceBlockLayout {
+  offset : Int64
+  padded_length : Int64
+  data_length : Int64
+  symbols : Int32
+}
+
+pub struct StandardBlockDecoder {
+  // private fields
+}
+pub fn StandardBlockDecoder::decode(Self) -> Result[Array[Bytes]?, RaptorError]
+pub fn StandardBlockDecoder::new(Int32, Int32, source_block? : Int32, limits? : ExecutionLimits) -> Result[Self, RaptorError]
+pub fn StandardBlockDecoder::push(Self, Int32, Bytes) -> Result[Bool, RaptorError]
+pub fn StandardBlockDecoder::push_packet(Self, EncodingPacket) -> Result[Int32, RaptorError]
+
+pub struct StandardBlockEncoder {
+  // private fields
+}
+pub fn StandardBlockEncoder::new(Array[Bytes], limits? : ExecutionLimits) -> Result[Self, RaptorError]
+pub fn StandardBlockEncoder::symbol(Self, Int32) -> Result[Bytes, RaptorError]
+
 pub(all) struct StorageEstimate {
   coefficient_bytes : Int32
   symbol_bytes : Int32
@@ -155,6 +203,30 @@ pub fn StreamDecoder::new(Config) -> Self
 pub fn StreamDecoder::progress(Self) -> Progress
 pub fn StreamDecoder::push(Self, Packet) -> Result[Bool, RaptorError]
 pub fn StreamDecoder::push_bytes(Self, Bytes) -> Result[Bool, RaptorError]
+
+pub(all) struct SubBlockLayout {
+  offset : Int64
+  length : Int64
+  symbol_offset : Int32
+  subsymbol_size : Int32
+}
+
+pub struct TransmissionInfo {
+  // private fields
+}
+pub fn TransmissionInfo::alignment(Self) -> Int32
+pub fn TransmissionInfo::block_layout(Self, Int32) -> Result[SourceBlockLayout, RaptorError]
+pub fn TransmissionInfo::encoding_packet(Self, Int32, Int32, Array[Bytes]) -> Result[EncodingPacket, RaptorError]
+pub fn TransmissionInfo::new(Int64, Int32, Int32, Int32, Int32) -> Result[Self, RaptorError]
+pub fn TransmissionInfo::parse_encoding_packet(Self, Bytes) -> Result[EncodingPacket, RaptorError]
+pub fn TransmissionInfo::reassemble_block(Self, Int32, Array[Bytes]) -> Result[Bytes, RaptorError]
+pub fn TransmissionInfo::serialize(Self) -> Bytes
+pub fn TransmissionInfo::source_blocks(Self) -> Int32
+pub fn TransmissionInfo::source_symbol(Self, Int32, Bytes, Int32) -> Result[Bytes, RaptorError]
+pub fn TransmissionInfo::sub_blocks(Self) -> Int32
+pub fn TransmissionInfo::subblock_layout(Self, Int32, Int32) -> Result[SubBlockLayout, RaptorError]
+pub fn TransmissionInfo::symbol_size(Self) -> Int32
+pub fn TransmissionInfo::transfer_length(Self) -> Int64
 
 // Type aliases
 

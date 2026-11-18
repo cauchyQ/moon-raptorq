@@ -24,7 +24,7 @@ for target in ["wasm", "wasm-gc", "js"]:
     run("moon", "build", "--release", "--deny-warn", "--target", target)
     output = run("moon", "test", "--release", "--deny-warn", "--target", target)
     print(output.strip(), flush=True)
-    for example in ["multicast", "device", "edge", "object", "resume"]:
+    for example in ["multicast", "device", "edge", "object", "resume", "standard"]:
         output = run("moon", "run", f"examples/{example}", "--release", "--target", target)
         assert "PASS" in output
 
@@ -67,7 +67,7 @@ report = dict(
     toolchain=run("moon", "version", "--all").strip(),
     commands=completed,
     targets=["wasm", "wasm-gc", "js"],
-    examples_per_target=5,
+    examples_per_target=6,
     cli="PASS: independent process encoding/decoding, waiting and validation",
     result="PASS",
 )

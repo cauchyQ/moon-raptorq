@@ -22,13 +22,14 @@ jobs:
       - run: moon check --deny-warn --target ${{ matrix.target }}
       - run: moon build --deny-warn --target ${{ matrix.target }}
       - run: moon test --release --deny-warn --target ${{ matrix.target }}
-      - name: Run five examples
+      - name: Run six examples
         run: |
           moon run examples/multicast --release --target ${{ matrix.target }}
           moon run examples/device --release --target ${{ matrix.target }}
           moon run examples/edge --release --target ${{ matrix.target }}
           moon run examples/object --release --target ${{ matrix.target }}
           moon run examples/resume --release --target ${{ matrix.target }}
+          moon run examples/standard --release --target ${{ matrix.target }}
       - name: Verify generated interfaces and formatting
         run: |
           moon info
@@ -48,4 +49,12 @@ jobs:
           python -m pip install --target .verification/reference-python2 raptorq==2.0.0
       - run: moon update
       - run: python tools/verify_interop.py
-      - run: git diff --exit-code -- reference_vectors_test.mbt reports/interop.json
+      - run: python tools/verify_standard.py
+      - run: python tools/verify_layout.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: standard-interop
+          path: |
+            reports/standard-interop.json
+            reports/layout-interop.json
+      - run: git diff --exit-code -- reference_vectors_test.mbt standard_layout_vectors_test.mbt reports/interop.json reports/layout-interop.json

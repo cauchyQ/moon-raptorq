@@ -11,7 +11,7 @@
 
 name = "cauchyQ/moon-raptorq"
 
-version = "0.1.0"
+version = "0.2.0"
 
 readme = "README.md"
 
@@ -23,7 +23,7 @@ keywords = [ "raptorq", "fec", "rfc6330", "erasure-coding" ]
 
 preferred_target = "wasm"
 
-description = "Bounded pure MoonBit RFC 6330 RaptorQ with incremental decoding and interoperability checks"
+description = "Pure MoonBit RFC 6330 RaptorQ with sparse inactivation, full OTI metadata and interoperability checks"
 
 import {
   "oyjh0381/moonerasure@0.3.0",

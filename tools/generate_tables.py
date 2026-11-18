@@ -1,4 +1,4 @@
-"""Reproduce the bounded RFC constants from the attributed Rust revision."""
+"""Reproduce the complete RFC constants from the attributed Rust revision."""
 from pathlib import Path
 import argparse
 import re
@@ -17,7 +17,7 @@ def read(name):
         assert actual == REVISION, actual
         return (arguments.reference / "src" / name).read_text(encoding="utf-8")
     url = f"https://raw.githubusercontent.com/cberner/raptorq/{REVISION}/src/{name}"
-    with urllib.request.urlopen(url) as response:
+    with urllib.request.urlopen(url, timeout=30) as response:
         return response.read().decode()
 
 rng = read("rng.rs")
@@ -30,12 +30,8 @@ for index in range(4):
     blocks.append(f"///|\nlet random_v{index} : Array[UInt] = [\n" + "\n".join(f"  {value}U," for value in values) + "\n]")
 table = parameters.split("= [", 1)[1].split("];", 1)[0]
 rows = [tuple(map(int, row)) for row in re.findall(r"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\)", table)]
-bounded = []
-for row in rows:
-    bounded.append(row)
-    if row[0] >= 256: break
-assert bounded[-1][0] == 257
-blocks.append("///|\nlet systematic_parameters : Array[(Int, Int, Int, Int, Int)] = [\n" + "\n".join(f"  {row}," for row in bounded) + "\n]")
+assert len(rows) == 477 and rows[-1][0] == 56403
+blocks.append("///|\nlet systematic_parameters : Array[(Int, Int, Int, Int, Int)] = [\n" + "\n".join(f"  {row}," for row in rows) + "\n]")
 (ROOT / "standard_tables.mbt").write_text("\n\n".join(blocks) + "\n", encoding="utf-8")
 subprocess.run(["moon", "fmt"], cwd=ROOT, check=True)
-print(f"Generated four 256-entry Rand tables and {len(bounded)} parameter rows")
+print(f"Generated four 256-entry Rand tables and {len(rows)} parameter rows")
